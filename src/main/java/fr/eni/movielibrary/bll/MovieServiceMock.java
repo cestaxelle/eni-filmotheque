@@ -13,24 +13,24 @@ import fr.eni.movielibrary.bo.Participant;
 @Service
 @Profile("dev")
 public class MovieServiceMock implements MovieService {
-	// Attributs static pour gÈrer les valeurs ‡ afficher
+	// Attributs static pour g√©rer les valeurs √† afficher
 	private static List<Movie> lstMovies;
 	private static List<Genre> lstGenres;
 	private static List<Participant> lstParticipants;
 
-	private static final String[] genres = { "Animation", "Science-fiction", "Documentaire", "Action", "ComÈdie",
+	private static final String[] genres = { "Animation", "Science-fiction", "Documentaire", "Action", "Com√©die",
 			"Drame" };
 
 	public MovieServiceMock() {
-		// CrÈation de la liste des genres
+		// Cr√©ation de la liste des genres
 		lstGenres = new ArrayList<>();
 		for (int index = 0; index < genres.length; index++) {
 			lstGenres.add(new Genre(index + 1, genres[index]));
 		}
 
-		// CrÈation de la liste des participants
+		// Cr√©ation de la liste des participants
 		lstParticipants = new ArrayList<>();
-		// 2 rÈalisateurs dont 1 pour 2 films
+		// 2 r√©alisateurs dont 1 pour 2 films
 		Participant stevenSpielberg = new Participant(1, "Spielberg", "Steven");
 		Participant davidCronenberg = new Participant(2, "Cronenberg", "David");
 		lstParticipants.add(stevenSpielberg);
@@ -57,25 +57,25 @@ public class MovieServiceMock implements MovieService {
 		actorsTheBFG.add(rubyBarnhill);
 		lstParticipants.addAll(actorsTheBFG);
 
-		// CrÈation de la liste de films
+		// Cr√©ation de la liste de films
 		// 3 films
 		lstMovies = new ArrayList<>();
 		Movie jurassicPark = new Movie(1, "Jurassic Park", 1993, 128,
-				"Le film raconte l'histoire d'un milliardaire et son Èquipe de gÈnÈticiens parvenant ‡ ramener ‡ la vie des dinosaures gr‚ce au clonage.");
+				"Le film raconte l'histoire d'un milliardaire et son √©quipe de g√©n√©ticiens parvenant √† ramener √† la vie des dinosaures gr√¢ce au clonage.");
 		jurassicPark.setGenre(lstGenres.get(1));
 		jurassicPark.setDirector(stevenSpielberg);
 		jurassicPark.setActors(actorsJurassicPark);
 		lstMovies.add(jurassicPark);
 
 		Movie theFly = new Movie(2, "The Fly", 1986, 95,
-				"Il s'agit de l'adaptation cinÈmatographique de la nouvelle Èponyme de l'auteur George Langelaan.");
+				"Il s'agit de l'adaptation cin√©matographique de la nouvelle √©ponyme de l'auteur George Langelaan.");
 		theFly.setGenre(lstGenres.get(1));
 		theFly.setDirector(davidCronenberg);
 		theFly.setActors(actorsTheFly);
 		lstMovies.add(theFly);
 
 		Movie theBFG = new Movie(3, "The BFG", 2016, 117,
-				"Le Bon Gros GÈant est un gÈant bien diffÈrent des autres habitants du Pays des GÈants.");
+				"Le Bon Gros G√©ant est un g√©ant bien diff√©rent des autres habitants du Pays des G√©ants.");
 		theBFG.setGenre(lstGenres.get(4));
 		theBFG.setDirector(stevenSpielberg);
 		theBFG.setActors(actorsTheBFG);
