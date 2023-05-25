@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="fragments/uikit.html">
+  <title th:text="${movie.title}"></title>
+</head>
+<body>
+<header th:insert="fragments/navbar.html"></header>
+<div class="uk-container uk-container-small uk-padding">
+  <h1 class="uk-text-bold uk-h1 uk-padding uk-padding-remove-top uk-padding-remove-left">Movie details</h1>
+  <form class="uk-form-horizontal">
+    <div>
+      <label class="uk-form-label" for="genre">Genre:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="genre" type="text" placeholder="Genre" th:field="${movie.genre}">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="year">Year:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="year" type="text" placeholder="Year" th:field="${movie.year}">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="title">Genre:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="title" type="text" placeholder="Title" th:field="${movie.title}">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="director">Director:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="director" type="text" placeholder="Director" th:field="${movie.director}">
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="duration">Duration:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" id="duration" type="number" placeholder="Duration" th:field="${movie.duration}">
+      </div>
+    </div>
+    <div class="uk-margin">
+    <label class="uk-form-label" for="actors">Actor(s):</label>
+      <div class="uk-form-controls">
+<!--        <textarea class="uk-textarea" id="actors" type="text" placeholder="Actor(s)" th:field="${movie.actors}"></textarea>-->
+        <textarea class="uk-textarea" id="actors" type="text" placeholder="Actor(s)" th:inline="text">[# th:each="participant : ${movie.actors}"]- [[${participant}]]
+[/]
+        </textarea>
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="synopsis">Synopsis:</label>
+      <div class="uk-form-controls">
+        <textarea class="uk-textarea" id="synopsis" type="text" placeholder="Synopsis" th:field="${movie.synopsis}"></textarea>
+      </div>
+  </div>
+        </form>
+      </div>
+
+      <!--    <h2 class="uk-text-bold uk-h1 uk-margin-remove-adjacent uk-margin-remove-top">Person</h2>-->
+<!--    <form action="" method="post" th:object="${}">-->
+<!--      <fieldset class="uk-fieldset">-->
+
+<!--        <div class="uk-margin">-->
+<!--          <label class="uk-form-label" for="year">Year:</label>-->
+<!--          <input class="uk-input" id="year" type="text" placeholder="Year" th:field="${movie.year}">-->
+<!--        </div>-->
+<!--        <div class="uk-margin">-->
+<!--          <label class="uk-form-label" for="title">Genre:</label>-->
+<!--          <input class="uk-input" id="title" type="text" placeholder="Title" th:field="${movie.title}">-->
+<!--        </div>-->
+<!--        <div class="uk-margin">-->
+<!--          <label class="uk-form-label" for="director">Director:</label>-->
+<!--          <input class="uk-input" id="director" type="text" placeholder="Director" th:field="${movie.director}">-->
+<!--        </div>-->
+<!--        <div class="uk-margin">-->
+<!--          <label class="uk-form-label" for="duration">Genre:</label>-->
+<!--          <input class="uk-input" id="duration" type="number" placeholder="Duration" th:field="${movie.duration}">-->
+<!--        </div>-->
+<!--        <div class="uk-margin">-->
+<!--        <label class="uk-form-label" for="actors">Actor(s):</label>-->
+<!--        <input class="uk-input" id="actors" type="text" placeholder="Actor(s)" th:field="${movie.actors}">-->
+<!--        </div>-->
+<!--        <div class="uk-margin">-->
+<!--          <label class="uk-form-label" for="synopsis">Synopsis:</label>-->
+<!--          <input class="uk-input" id="synopsis" type="text" placeholder="Synopsis" th:field="${movie.synopsis}">-->
+<!--        </div>-->
+
+<!--        &lt;!&ndash; Bouton Submit &ndash;&gt;-->
+<!--        <div class="uk-margin" uk-margin>-->
+<!--          <button class="uk-button uk-button-default">Submit</button>-->
+<!--        </div>-->
+<!--      </fieldset>-->
+<!--    </form>-->
+
+</body>
+</html>

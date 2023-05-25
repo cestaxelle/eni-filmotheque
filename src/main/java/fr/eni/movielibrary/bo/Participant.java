@@ -37,7 +37,10 @@ public class Participant {
 	}
 
 	@Override
+//	public String toString() {
+//		return String.format("%s %s [id=%d]", firstName, lastName, id);
+//	}
 	public String toString() {
-		return String.format("%s %s [id=%d]", firstName, lastName, id);
+		return String.format("%s %s", firstName, lastName);
 	}
 }

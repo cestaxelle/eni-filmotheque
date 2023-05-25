@@ -28,7 +28,8 @@ public class Genre {
 
 	@Override
 	public String toString() {
-		return String.format("%s [id=%d]", label, id);
+//		return String.format("%s [id=%d]", label, id);
+		return label;
 	}
 
 }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head th:insert="fragments/uikit.html">
+    <title>Movie List</title>
+</head>
+<body>
+<header th:insert="fragments/navbar.html"></header>
+    <div class="uk-container uk-container-small uk-padding">
+        <h1 class="uk-text-bold uk-h1 uk-padding uk-padding-remove-top uk-padding-remove-left">ENI Movies</h1>
+        <table class="uk-table uk-table-striped uk-table-middle">
+            <thead>
+                <tr>
+                    <th>Genre</th>
+                    <th>Year</th>
+                    <th>Title</th>
+                    <th>Director</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="movie : ${movies}">
+                    <td th:text="${movie.genre}"></td>
+                    <td th:text="${movie.year}"></td>
+                    <td th:text="${movie.title}"></td>
+                    <td><span th:text="${movie.director}"></span></td>
+                    <td><a class="uk-button uk-button-default" th:href="@{'/movies/detail?id=' + ${movie.id}}">Detail</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
