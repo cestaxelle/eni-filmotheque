@@ -14,7 +14,7 @@
     <p th:text="${alert}"></p>
   </div>
 
-  <form action="/login" method="post">
+  <form action="/login" method="post" th:object="${formMember}">
     <fieldset class="uk-fieldset">
       <div class="uk-margin-small">
         <div class="uk-inline">

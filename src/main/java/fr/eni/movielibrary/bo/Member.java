@@ -6,8 +6,8 @@ public class Member {
 	private long id;
 	private String lastName;
 	private String firstName;
-	protected String login;
-	protected String password;
+	private String login;
+	private String password;
 	private boolean isAdmin;
 	private List<Opinion> opinions;
 

@@ -6,10 +6,10 @@ import java.util.List;
 
 public interface MemberService {
 
-	public List<Member> getAllMembers();
+	List<Member> getAllMembers();
 
-	public Member getMemberById(long id);
+	Member getMemberById(long id);
 
-	public Member login(Member member);
+	Member login(Member member);
 
 }

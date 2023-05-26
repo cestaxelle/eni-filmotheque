@@ -20,7 +20,6 @@ public class MemberController {
 
 	@GetMapping("/")
 	public String home(Model model) {
-		System.out.println(model.getAttribute("member"));
 		if (model.getAttribute("member") == null) {
 			model.addAttribute("member", new Member());
 			return "login";
@@ -30,7 +29,7 @@ public class MemberController {
 	}
 
 	@PostMapping("/login")
-	public String login(@ModelAttribute Member member, Model model) {
+	public String login(@ModelAttribute("formMember") Member member, Model model) {
 		Member loggedUser = memberService.login(member);
 		if (loggedUser != null) {
 			model.addAttribute("member", loggedUser);
