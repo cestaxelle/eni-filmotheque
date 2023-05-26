@@ -1,14 +1,13 @@
 package fr.eni.movielibrary.ihm;
 
 import org.springframework.beans.factory.annotation.Autowired;
-
 import fr.eni.movielibrary.bll.MovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
+@SessionAttributes({"member"})
 public class MovieController {
 
 	@Autowired
@@ -17,11 +16,6 @@ public class MovieController {
 	public MovieController(MovieService movieService) {
 		this.movieService = movieService;
 	}
-
-//	@GetMapping("/")
-//	public String home() {
-//		return "index";
-//	}
 
 	@GetMapping("/movies")
 	public String showAll(Model model) {

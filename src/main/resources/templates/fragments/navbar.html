@@ -2,11 +2,15 @@
   <div class="uk-container">
     <div uk-navbar>
       <div class="uk-navbar-left">
-        <a href="/" class="uk-navbar-item uk-logo">Movie Library</a>
+        <a href="/" class="uk-navbar-item uk-logo">Movie Library
+          <span th:if="${member != null && member.id != 0}">[<span th:text="${member.login}"></span>]</span>
+        </a>
+
       </div>
       <div class="uk-navbar-right">
         <ul class="uk-navbar-nav">
-          <li class="uk-active"><a href="/movies">Movie List</a></li>
+          <li class="uk-active" th:if="${member != null && member.id != 0}"><a href="/movies">Movie List</a></li>
+          <li th:if="${member != null && member.id != 0}" class="uk-active"><a href="/logout"><button class="uk-button">Log out</button></a></li>
         </ul>
       </div>
     </div>

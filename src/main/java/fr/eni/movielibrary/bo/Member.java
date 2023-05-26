@@ -6,10 +6,13 @@ public class Member {
 	private long id;
 	private String lastName;
 	private String firstName;
-	private String login;
-	private String password;
+	protected String login;
+	protected String password;
 	private boolean isAdmin;
 	private List<Opinion> opinions;
+
+	public Member() {
+	}
 
 	public Member(long id, String lastName, String firstName, String login, String password, boolean isAdmin,
 			List<Opinion> opinions) {

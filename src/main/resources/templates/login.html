@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <div th:insert="fragments/uikit.html"></div>
+  <title>Movie List - Login</title>
+</head>
+<body>
+<header th:insert="fragments/navbar.html"></header>
+<div class="uk-container uk-container-small uk-padding">
+  <h1 class="uk-text-bold uk-h1 uk-padding uk-padding-remove-top uk-padding-remove-left">Log in</h1>
+
+  <div th:if="${alert != null}" class="uk-alert-warning" uk-alert>
+    <a class="uk-alert-close" uk-close></a>
+    <p th:text="${alert}"></p>
+  </div>
+
+  <form action="/login" method="post">
+    <fieldset class="uk-fieldset">
+      <div class="uk-margin-small">
+        <div class="uk-inline">
+          <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: user"></span>
+          <input class="uk-input" required placeholder="Login" type="text" th:field="${member.login}">
+        </div>
+      </div>
+      <div class="uk-margin-small">
+        <div class="uk-inline">
+          <span class="uk-form-icon uk-form-icon-flip" data-uk-icon="icon: lock"></span>
+          <input class="uk-input" required placeholder="Password" type="password" th:field="${member.password}">
+        </div>
+      </div>
+      <div class="uk-margin-bottom">
+        <button type="submit" class="uk-button">LOG IN</button>
+      </div>
+    </fieldset>
+  </form>
+</div>
+
+<!-- JS FILES -->
+<script src="https://cdn.jsdelivr.net/npm/uikit@latest/dist/js/uikit-icons.min.js"></script>
+</body>
+</html>
