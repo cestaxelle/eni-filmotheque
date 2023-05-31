@@ -137,22 +137,6 @@ public class MovieServiceMock implements MovieService {
 	public ProcessResult addMovie(Movie movie) {
 		ProcessResult result = new ProcessResult();
 
-		// Contrôles de surface
-		if (null == movie.getTitle() || movie.getTitle().isEmpty()) {
-			result.addError(new FormError("titleError", "The title is required"));
-		}
-		if (movie.getYear() <= 0) {
-			result.addError(new FormError("yearError", "The year is required"));
-		}
-		if (null == movie.getGenre() || movie.getGenre().getId() <= 0) {
-			result.addError(new FormError("genreError", "Please select a genre"));
-		}
-		if (null == movie.getDirector() || movie.getDirector().getId() <= 0) {
-			result.addError(new FormError("directorError", "Please select a director"));
-		}
-		if (null != movie.getSynopsis() && movie.getSynopsis().length() > 250) {
-			result.addError(new FormError("synopsisError","250 characters maximum"));
-		}
 		if (result.isValid()) {
 			lstMovies.add(movie);
 		}

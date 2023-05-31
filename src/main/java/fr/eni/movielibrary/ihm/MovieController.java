@@ -8,7 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import fr.eni.movielibrary.bll.MovieService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+
+import javax.validation.Valid;
 
 @Controller
 @SessionAttributes({"member", "movie", "participants", "genres"})
@@ -48,12 +51,16 @@ public class MovieController {
 	}
 
 	@PostMapping("/movies/add")
-	public String createMovie(@ModelAttribute("formMovie") Movie movie, Model model) {
-		ProcessResult result = movieService.addMovie(movie);
-		if (result.isValid()) {
-			return "redirect:/";
+	public String createMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model) {
+		ProcessResult result = new ProcessResult();
+		if (!bindingResult.hasErrors()) {
+			result = movieService.addMovie(movie);
+			model.addAttribute("errors", result.getErrors());
+			if (result.isValid()) {
+				model.addAttribute("movie", movie);
+				return "redirect:/";
+			}
 		}
-		model.addAttribute("errors", result.getErrors());
 		model.addAttribute("movie", movie);
 		return "movie_form";
 	}

@@ -8,7 +8,7 @@
 <header th:insert="fragments/navbar.html"></header>
 <div class="uk-container uk-container-small uk-padding">
   <h1 class="uk-text-bold uk-h1 uk-padding uk-padding-remove-top uk-padding-remove-left">Add a new movie</h1>
-  <form class="uk-form-horizontal" action="/movies/add" method="post" th:object="${formMovie}">
+  <form class="uk-form-horizontal" action="/movies/add" method="post" th:object="${movie}">
     <div th:if="${null != errors && errors.size() > 0}" class="uk-alert-danger" uk-alert>
       <a class="uk-alert-close" uk-close></a>
       <p th:each="error : ${errors}" th:text="${error}"></p>
@@ -17,7 +17,7 @@
       <label class="uk-form-label" for="title">Title*:</label>
       <div class="uk-form-controls">
         <input th:field="${movie.title}" th:class="'uk-input '+${titleError != null ? 'uk-form-danger' : ''}" id="title" type="text" placeholder="Title">
-        <div th:if="${titleError != null}" class="uk-text-danger uk-text-small" th:text="${titleError}"></div>
+        <div th:if="${#fields.hasErrors('title')}" class="uk-text-danger uk-text-small" th:each="error : ${#fields.errors('title')}" th:text="${error}"></div>
       </div>
 
     </div>
@@ -25,7 +25,7 @@
       <label class="uk-form-label" for="year">Year*:</label>
       <div class="uk-form-controls">
         <input th:field="${movie.year}" th:class="${yearError != null ? 'uk-input uk-form-danger' : 'uk-input '}" id="year" type="number" placeholder="Year">
-        <div th:if="${yearError != null}" class="uk-text-danger uk-text-small" th:text="${yearError}"></div>
+        <div th:if="${#fields.hasErrors('year')}" class="uk-text-danger uk-text-small" th:each="error : ${#fields.errors('year')}" th:text="${error}"></div>
       </div>
     </div>
     <div class="uk-margin">
@@ -36,7 +36,7 @@
             <option value="0">Please select...</option>
             <option th:each="genre: ${genres}" th:value="${genre.getId()}" th:text="${genre.toString()}"></option>
           </select>
-          <div th:if="${genreError != null}" class="uk-text-danger uk-text-small" th:text="${genreError}"></div>
+          <div th:if="${#fields.hasErrors('genre')}" class="uk-text-danger uk-text-small" th:each="error : ${#fields.errors('genre')}" th:text="${error}"></div>
         </div>
       </div>
     </div>
@@ -48,7 +48,7 @@
             <option value="0">Please select...</option>
             <option th:each="participant: ${participants}" th:value="${participant.getId()}" th:text="${participant.toString()}"></option>
           </select>
-          <div th:if="${directorError != null}" class="uk-text-danger uk-text-small" th:text="${directorError}"></div>
+          <div th:if="${#fields.hasErrors('director')}" class="uk-text-danger uk-text-small" th:each="error : ${#fields.errors('director')}" th:text="${error}"></div>
         </div>
       </div>
     </div>
@@ -56,6 +56,7 @@
       <label class="uk-form-label" for="duration">Duration:</label>
       <div class="uk-form-controls">
         <input th:field="${movie.duration}" class="uk-input" id="duration" type="number" placeholder="Duration">
+        <div th:if="${#fields.hasErrors('duration')}" class="uk-text-danger uk-text-small" th:each="error : ${#fields.errors('duration')}" th:text="${error}"></div>
       </div>
     </div>
         <div class="uk-margin">
@@ -65,7 +66,6 @@
               <select th:field="${movie.actors}" th:class="'uk-select ' +${actorError != null ? 'uk-form-danger' : ''}" name="actor" id="actor" multiple>
                 <option th:each="participant: ${participants}" th:value="${participant.getId()}" th:text="${participant.toString()}"></option>
               </select>
-              <div th:if="${actorError != null}" class="uk-text-danger uk-text-small" th:text="${actorError}"></div>
             </div>
           </div>
         </div>
@@ -73,7 +73,7 @@
       <label class="uk-form-label" for="synopsis">Synopsis:</label>
       <div class="uk-form-controls">
         <textarea th:field="${movie.synopsis}" th:class="'uk-textarea ' +${synopsisError != null ? 'uk-form-danger' : ''}" id="synopsis" type="text" placeholder="Synopsis"></textarea>
-        <div th:if="${synopsisError != null}" class="uk-text-danger uk-text-small" th:text="${synopsisError}"></div>
+        <div th:if="${#fields.hasErrors('synopsis')}" class="uk-text-danger uk-text-small" th:each="error : ${#fields.errors('synopsis')}" th:text="${error}"></div>
       </div>
     </div>
     <div class="uk-margin" uk-margin>

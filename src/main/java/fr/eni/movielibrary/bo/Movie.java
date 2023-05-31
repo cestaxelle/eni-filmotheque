@@ -1,17 +1,24 @@
 package fr.eni.movielibrary.bo;
 
+import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
 
 	private long id;
+	@NotBlank(message = "The title is required")
 	private String title;
+	@Min(value = 1890, message = "Please enter a valid year")
 	private int year;
+	@Min(value = 1, message = "Please enter a duration in minutes (at least 1 minute)")
 	private int duration;
+	@Size(min=20, max=250, message = "The synopsis must be between 20 and 250 characters")
 	private String synopsis;
+	@NotNull(message = "Please choose a director")
 	private Participant director;
 	private List<Participant> actors;
+	@NotNull(message = "Please select a genre")
 	private Genre genre;
 	private List<Opinion> opinions;
 
