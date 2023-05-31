@@ -40,19 +40,19 @@ public class MovieController {
 	@GetMapping("/movies/add")
 	public String addMovie(Model model) {
 		Member loggedUser = (Member) model.getAttribute("member");
-		if (loggedUser != null && loggedUser.getId() != 0) {
+		if (loggedUser == null || loggedUser.getId() == 0) {
+			return "redirect:/login";
+		}
 			model.addAttribute("movie", new Movie());
 			model.addAttribute("participants", movieService.getParticipants());
 			model.addAttribute("genres", movieService.getGenres());
 			return "movie_form";
-		} else {
-			return "redirect:/login";
-		}
+
 	}
 
 	@PostMapping("/movies/add")
 	public String createMovie(@Valid @ModelAttribute("movie") Movie movie, BindingResult bindingResult, Model model) {
-		ProcessResult result = new ProcessResult();
+		ProcessResult result;
 		if (!bindingResult.hasErrors()) {
 			result = movieService.addMovie(movie);
 			model.addAttribute("errors", result.getErrors());
