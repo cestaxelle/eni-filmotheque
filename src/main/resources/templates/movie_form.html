@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <div th:insert="fragments/uikit.html"></div>
+  <title>Add a new movie</title>
+</head>
+<body>
+<header th:insert="fragments/navbar.html"></header>
+<div class="uk-container uk-container-small uk-padding">
+  <h1 class="uk-text-bold uk-h1 uk-padding uk-padding-remove-top uk-padding-remove-left">Add a new movie</h1>
+  <form class="uk-form-horizontal" action="/movies/add" method="post" th:object="${formMovie}">
+    <div th:if="${null != errors && errors.size() > 0}" class="uk-alert-danger" uk-alert>
+      <a class="uk-alert-close" uk-close></a>
+      <p th:each="error : ${errors}" th:text="${error}"></p>
+    </div>
+    <div>
+      <label class="uk-form-label" for="title">Title*:</label>
+      <div class="uk-form-controls">
+        <input th:field="${movie.title}" th:class="'uk-input '+${titleError != null ? 'uk-form-danger' : ''}" id="title" type="text" placeholder="Title">
+        <div th:if="${titleError != null}" class="uk-text-danger uk-text-small" th:text="${titleError}"></div>
+      </div>
+
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="year">Year*:</label>
+      <div class="uk-form-controls">
+        <input th:field="${movie.year}" th:class="${yearError != null ? 'uk-input uk-form-danger' : 'uk-input '}" id="year" type="number" placeholder="Year">
+        <div th:if="${yearError != null}" class="uk-text-danger uk-text-small" th:text="${yearError}"></div>
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="genre">Genre*:</label>
+      <div class="uk-form-controls">
+        <div>
+          <select th:field="${movie.genre}" th:class="'uk-select ' +${genreError != null ? 'uk-form-danger' : ''}" name="genre" id="genre">
+            <option value="0">Please select...</option>
+            <option th:each="genre: ${genres}" th:value="${genre.getId()}" th:text="${genre.toString()}"></option>
+          </select>
+          <div th:if="${genreError != null}" class="uk-text-danger uk-text-small" th:text="${genreError}"></div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="director">Director*:</label>
+      <div class="uk-form-controls">
+        <div>
+          <select th:field="${movie.director}" th:class="'uk-select ' +${directorError != null ? 'uk-form-danger' : ''}" name="director" id="director">
+            <option value="0">Please select...</option>
+            <option th:each="participant: ${participants}" th:value="${participant.getId()}" th:text="${participant.toString()}"></option>
+          </select>
+          <div th:if="${directorError != null}" class="uk-text-danger uk-text-small" th:text="${directorError}"></div>
+        </div>
+      </div>
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="duration">Duration:</label>
+      <div class="uk-form-controls">
+        <input th:field="${movie.duration}" class="uk-input" id="duration" type="number" placeholder="Duration">
+      </div>
+    </div>
+        <div class="uk-margin">
+          <label class="uk-form-label" for="actor">Actor(s):</label>
+          <div class="uk-form-controls">
+            <div>
+              <select th:field="${movie.actors}" th:class="'uk-select ' +${actorError != null ? 'uk-form-danger' : ''}" name="actor" id="actor" multiple>
+                <option th:each="participant: ${participants}" th:value="${participant.getId()}" th:text="${participant.toString()}"></option>
+              </select>
+              <div th:if="${actorError != null}" class="uk-text-danger uk-text-small" th:text="${actorError}"></div>
+            </div>
+          </div>
+        </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="synopsis">Synopsis:</label>
+      <div class="uk-form-controls">
+        <textarea th:field="${movie.synopsis}" th:class="'uk-textarea ' +${synopsisError != null ? 'uk-form-danger' : ''}" id="synopsis" type="text" placeholder="Synopsis"></textarea>
+        <div th:if="${synopsisError != null}" class="uk-text-danger uk-text-small" th:text="${synopsisError}"></div>
+      </div>
+    </div>
+    <div class="uk-margin" uk-margin>
+      <button class="uk-button uk-button-default">Submit</button>
+    </div>
+        </form>
+      </div>
+</body>
+</html>

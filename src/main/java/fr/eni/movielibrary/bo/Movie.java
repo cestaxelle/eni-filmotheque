@@ -14,6 +14,7 @@ public class Movie {
 	private Genre genre;
 	private List<Opinion> opinions;
 
+	public Movie(){}
 	public Movie(long id, String title, int year, int duration, String synopsis) {
 		super();
 		this.id = id;

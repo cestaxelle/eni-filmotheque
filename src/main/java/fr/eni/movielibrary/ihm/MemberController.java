@@ -22,7 +22,7 @@ public class MemberController {
 	public String home(Model model) {
 		if (model.getAttribute("member") == null) {
 			model.addAttribute("member", new Member());
-			return "login";
+			return "redirect:/login";
 		} else {
 			return "redirect:/movies";
 		}
@@ -38,6 +38,12 @@ public class MemberController {
 			model.addAttribute("alert", "Invalid credentials, please check your login and password.");
 			return "login";
 		}
+	}
+
+	@GetMapping("/login")
+	public String login(Model model) {
+		model.addAttribute("member", new Member());
+		return "login";
 	}
 
 	@GetMapping("/logout")
