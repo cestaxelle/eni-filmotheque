@@ -42,7 +42,6 @@
     <div class="uk-margin">
     <label class="uk-form-label" for="actors">Actor(s):</label>
       <div class="uk-form-controls">
-<!--        <textarea class="uk-textarea" id="actors" type="text" placeholder="Actor(s)" th:field="${movie.actors}"></textarea>-->
         <textarea class="uk-textarea" id="actors" type="text" placeholder="Actor(s)" th:inline="text">[# th:each="participant : ${movie.actors}"]- [[${participant}]]
 [/]
         </textarea>
@@ -55,43 +54,41 @@
       </div>
   </div>
         </form>
+  <h2 class="uk-margin-top">Reviews</h2>
+  <ul class="uk-comment-list">
+    <li th:each="review : ${movie.opinions}" class="uk-background-muted uk-padding-small uk-margin-remove">
+      <article class="uk-comment uk-visible-toggle" tabindex="-1" role="comment">
+        <header class="uk-comment-header uk-position-relative">
+          <div class="uk-grid-medium uk-flex-middle" uk-grid>
+            <div class="uk-width-expand">
+              <h4 class="uk-comment-title" th:text="${review.note}+'/5'"></h4>
+            </div>
+          </div>
+        </header>
+        <div class="uk-comment-body">
+          <p th:text="${review.comment}"></p>
+        </div>
+      </article>
+    </li>
+  </ul>
+  <form class="uk-margin-top" th:action="@{/reviews/add/__${movie.id}__}" method="post" th:object="${formReview}">
+    <h2>Add a review</h2>
+    <div>
+      <label class="uk-form-label" for="rating">Rating:</label>
+      <div class="uk-form-controls">
+        <input class="uk-input" type="number" min="0" max="5" step="1" id="rating" placeholder="Rating" th:field="${review.note}">
       </div>
-
-      <!--    <h2 class="uk-text-bold uk-h1 uk-margin-remove-adjacent uk-margin-remove-top">Person</h2>-->
-<!--    <form action="" method="post" th:object="${}">-->
-<!--      <fieldset class="uk-fieldset">-->
-
-<!--        <div class="uk-margin">-->
-<!--          <label class="uk-form-label" for="year">Year:</label>-->
-<!--          <input class="uk-input" id="year" type="text" placeholder="Year" th:field="${movie.year}">-->
-<!--        </div>-->
-<!--        <div class="uk-margin">-->
-<!--          <label class="uk-form-label" for="title">Genre:</label>-->
-<!--          <input class="uk-input" id="title" type="text" placeholder="Title" th:field="${movie.title}">-->
-<!--        </div>-->
-<!--        <div class="uk-margin">-->
-<!--          <label class="uk-form-label" for="director">Director:</label>-->
-<!--          <input class="uk-input" id="director" type="text" placeholder="Director" th:field="${movie.director}">-->
-<!--        </div>-->
-<!--        <div class="uk-margin">-->
-<!--          <label class="uk-form-label" for="duration">Genre:</label>-->
-<!--          <input class="uk-input" id="duration" type="number" placeholder="Duration" th:field="${movie.duration}">-->
-<!--        </div>-->
-<!--        <div class="uk-margin">-->
-<!--        <label class="uk-form-label" for="actors">Actor(s):</label>-->
-<!--        <input class="uk-input" id="actors" type="text" placeholder="Actor(s)" th:field="${movie.actors}">-->
-<!--        </div>-->
-<!--        <div class="uk-margin">-->
-<!--          <label class="uk-form-label" for="synopsis">Synopsis:</label>-->
-<!--          <input class="uk-input" id="synopsis" type="text" placeholder="Synopsis" th:field="${movie.synopsis}">-->
-<!--        </div>-->
-
-<!--        &lt;!&ndash; Bouton Submit &ndash;&gt;-->
-<!--        <div class="uk-margin" uk-margin>-->
-<!--          <button class="uk-button uk-button-default">Submit</button>-->
-<!--        </div>-->
-<!--      </fieldset>-->
-<!--    </form>-->
-
+    </div>
+    <div class="uk-margin">
+      <label class="uk-form-label" for="comment">Comment:</label>
+      <div class="uk-form-controls">
+        <textarea class="uk-textarea" id="comment" type="text" placeholder="What did you think of this movie?" th:field="${review.comment}"></textarea>
+      </div>
+      <div class="uk-margin" uk-margin>
+        <button class="uk-button uk-button-default">Publish</button>
+      </div>
+    </div>
+  </form>
+      </div>
 </body>
 </html>

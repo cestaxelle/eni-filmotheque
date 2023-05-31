@@ -2,6 +2,7 @@ package fr.eni.movielibrary.ihm;
 
 import fr.eni.movielibrary.bo.Member;
 import fr.eni.movielibrary.bo.Movie;
+import fr.eni.movielibrary.bo.Opinion;
 import fr.eni.movielibrary.bo.ProcessResult;
 import org.springframework.beans.factory.annotation.Autowired;
 import fr.eni.movielibrary.bll.MovieService;
@@ -29,6 +30,7 @@ public class MovieController {
 	@GetMapping("/movies/detail")
 	public String showMovie(@RequestParam("id") int id, Model model) {
 		model.addAttribute("movie", movieService.getMovieById(id));
+		model.addAttribute("review", new Opinion());
 		return "detail";
 	}
 
@@ -47,21 +49,6 @@ public class MovieController {
 
 	@PostMapping("/movies/add")
 	public String createMovie(@ModelAttribute("formMovie") Movie movie, Model model) {
-//		if (null == movie.getTitle() || movie.getTitle().isEmpty()) {
-//			model.addAttribute("titleError", "The title is required");
-//		}
-//		if (movie.getYear() <= 0) {
-//			model.addAttribute("yearError", "The year is required");
-//		}
-//		if (movie.getGenre().getId() <= 0) {
-//			model.addAttribute("genreError", "Please select a genre");
-//		}
-//		if (movie.getDirector().getId() <= 0) {
-//			model.addAttribute("directorError", "Please select a director");
-//		}
-//		if (null != movie.getSynopsis() && movie.getSynopsis().length() > 250) {
-//			model.addAttribute("synopsisError", "250 characters maximum");
-//		}
 		ProcessResult result = movieService.addMovie(movie);
 		if (result.isValid()) {
 			return "redirect:/";

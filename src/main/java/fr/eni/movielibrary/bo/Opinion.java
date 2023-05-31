@@ -12,6 +12,9 @@ public class Opinion {
 		this.comment = comment;
 	}
 
+	public Opinion() {
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -38,7 +41,7 @@ public class Opinion {
 
 	@Override
 	public String toString() {
-		return "Opinion [id=" + id + ", note=" + note + ", comment=" + comment + "]";
+		return String.format("%s (%d/5)", comment, note);
 	}
 
 }

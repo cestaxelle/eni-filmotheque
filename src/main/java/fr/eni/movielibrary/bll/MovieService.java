@@ -2,10 +2,7 @@ package fr.eni.movielibrary.bll;
 
 import java.util.List;
 
-import fr.eni.movielibrary.bo.Genre;
-import fr.eni.movielibrary.bo.Movie;
-import fr.eni.movielibrary.bo.Participant;
-import fr.eni.movielibrary.bo.ProcessResult;
+import fr.eni.movielibrary.bo.*;
 
 public interface MovieService {
 
@@ -22,5 +19,9 @@ public interface MovieService {
 	public Participant getParticipantById(long id);
 
 	public ProcessResult addMovie(Movie movie);
+
+	public void saveMovie(Movie movie);
+
+	public ProcessResult addReview(Opinion review, int id);
 
 }

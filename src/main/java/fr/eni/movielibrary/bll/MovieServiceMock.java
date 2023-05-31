@@ -54,6 +54,14 @@ public class MovieServiceMock implements MovieService {
 		actorsTheBFG.add(rubyBarnhill);
 		lstParticipants.addAll(actorsTheBFG);
 
+		Opinion review1 = new Opinion(1, 4, "My favorite movie!");
+		Opinion review2 = new Opinion(2, 2, "Meh");
+		Opinion review3 = new Opinion(3, 5, "A classic!");
+		List<Opinion> reviews = new ArrayList<Opinion>();
+		reviews.add(review1);
+		reviews.add(review2);
+		reviews.add(review3);
+
 		// Création de la liste de films
 		// 3 films
 		lstMovies = new ArrayList<>();
@@ -62,6 +70,7 @@ public class MovieServiceMock implements MovieService {
 		jurassicPark.setGenre(lstGenres.get(1));
 		jurassicPark.setDirector(stevenSpielberg);
 		jurassicPark.setActors(actorsJurassicPark);
+		jurassicPark.setOpinions(reviews);
 		lstMovies.add(jurassicPark);
 
 		Movie theFly = new Movie(2, "The Fly", 1986, 95,
@@ -147,7 +156,35 @@ public class MovieServiceMock implements MovieService {
 		if (result.isValid()) {
 			lstMovies.add(movie);
 		}
+		return result;
+	}
 
+	@Override
+	public void saveMovie(Movie movie) {
+		int index = 0;
+		int indexToEdit = -1;
+		for (Movie currentMovie : lstMovies) {
+			if (currentMovie.getId() == movie.getId()) {
+				indexToEdit = index;
+			}
+			index++;
+		}
+		if (indexToEdit > -1) {
+			lstMovies.set(indexToEdit, movie);
+		}
+	}
+
+	@Override
+	public ProcessResult addReview(Opinion review, int id) {
+		ProcessResult result = new ProcessResult();
+		Movie movie = getMovieById(id);
+		if (movie == null) {
+		result.addError(new FormError("movieError", "The movie couldn't be found"));
+		}
+		if (result.isValid()) {
+			movie.addOpinion(review);
+			saveMovie(movie);
+		}
 		return result;
 	}
 }

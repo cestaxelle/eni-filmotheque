@@ -1,5 +1,6 @@
 package fr.eni.movielibrary.bo;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Movie {
@@ -22,6 +23,7 @@ public class Movie {
 		this.year = year;
 		this.duration = duration;
 		this.synopsis = synopsis;
+		this.opinions = new ArrayList<Opinion>();
 	}
 
 	public long getId() {
@@ -94,6 +96,10 @@ public class Movie {
 
 	public void setOpinions(List<Opinion> opinions) {
 		this.opinions = opinions;
+	}
+
+	public void addOpinion(Opinion opinion) {
+		this.opinions.add(opinion);
 	}
 
 	@Override
