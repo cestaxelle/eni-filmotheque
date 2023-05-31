@@ -23,7 +23,7 @@ public class Movie {
 		this.year = year;
 		this.duration = duration;
 		this.synopsis = synopsis;
-		this.opinions = new ArrayList<Opinion>();
+		this.opinions = new ArrayList<>();
 	}
 
 	public long getId() {

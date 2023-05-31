@@ -6,22 +6,22 @@ import fr.eni.movielibrary.bo.*;
 
 public interface MovieService {
 
-	public List<Movie> getAllMovies();
+	List<Movie> getAllMovies();
 
-	public Movie getMovieById(long id);
+	Movie getMovieById(long id);
 
-	public List<Genre> getGenres();
+	List<Genre> getGenres();
 
-	public Genre getGenreById(long id);
+	Genre getGenreById(long id);
 
-	public List<Participant> getParticipants();
+	List<Participant> getParticipants();
 
-	public Participant getParticipantById(long id);
+	Participant getParticipantById(long id);
 
-	public ProcessResult addMovie(Movie movie);
+	ProcessResult addMovie(Movie movie);
 
-	public void saveMovie(Movie movie);
+	void saveMovie(Movie movie);
 
-	public ProcessResult addReview(Opinion review, int id);
+	ProcessResult addReview(Opinion review, int id);
 
 }

@@ -57,7 +57,7 @@ public class MovieServiceMock implements MovieService {
 		Opinion review1 = new Opinion(1, 4, "My favorite movie!");
 		Opinion review2 = new Opinion(2, 2, "Meh");
 		Opinion review3 = new Opinion(3, 5, "A classic!");
-		List<Opinion> reviews = new ArrayList<Opinion>();
+		List<Opinion> reviews = new ArrayList<>();
 		reviews.add(review1);
 		reviews.add(review2);
 		reviews.add(review3);
