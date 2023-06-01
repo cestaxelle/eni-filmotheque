@@ -1,18 +1,23 @@
 package fr.eni.movielibrary.bo;
 
+import javax.persistence.*;
 import java.util.List;
 
+@Entity
 public class Member {
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	private String lastName;
 	private String firstName;
 	private String login;
 	private String password;
 	private boolean isAdmin;
+	@OneToMany(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="author_id")
 	private List<Opinion> opinions;
 
-	public Member() {
-	}
+	public Member() {}
 
 	public Member(long id, String lastName, String firstName, String login, String password, boolean isAdmin,
 			List<Opinion> opinions) {

@@ -1,11 +1,15 @@
 package fr.eni.movielibrary.bo;
 
+import javax.persistence.*;
 import javax.validation.constraints.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
 public class Movie {
 
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 	@NotBlank(message = "The title is required")
 	private String title;
@@ -16,10 +20,16 @@ public class Movie {
 	@Size(min=20, max=250, message = "The synopsis must be between 20 and 250 characters")
 	private String synopsis;
 	@NotNull(message = "Please choose a director")
+	@ManyToOne()
 	private Participant director;
+	@ManyToMany()
 	private List<Participant> actors;
 	@NotNull(message = "Please select a genre")
+	@ManyToOne(cascade = CascadeType.ALL, fetch=FetchType.EAGER)
+	@JoinColumn(name="genre_id")
 	private Genre genre;
+	@OneToMany()
+	@JoinColumn(name="movie_id")
 	private List<Opinion> opinions;
 
 	public Movie(){}
